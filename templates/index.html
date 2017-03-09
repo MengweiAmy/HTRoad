@@ -1,0 +1,121 @@
+<script type="text/javascript">
+
+	$(document).ready(function() {
+        console.log(window.location.href);
+        var remember = $.cookie('remember');
+        if (remember == 'true') 
+        {
+            var name = $.cookie('user');
+            var password = $.cookie('psw');
+            // autofill the fields
+            $('#user').val(name);
+            $('#psw').val(password);
+        }
+	});
+	
+	function signin() {
+  		var name = document.getElementById("user").value;
+    	var psw = document.getElementById("psw").value;
+
+    	hots.login(name, psw, function(response, status){
+      		if (status!=200 && response!=true) {
+        		// Handle login/connection error
+	        		return;
+	      	}
+
+      		//var path = window.location.origin + window.location.pathname + "pages/roadQuality.jsp";
+      		window.location.href = "pages/roadQuality.jsp";
+    	});
+    	window.location.href = "pages/roadQuality.jsp";
+    	
+    	//Save cookies if checked remember me
+    	if ($('#remember').is(':checked')) {
+            var username = $('#user').val();
+            var password = $('#psw').val();
+
+            // set cookies to expire in 14 days
+            $.cookie('user', username, { expires: 14 });
+            $.cookie('psw', password, { expires: 14 });
+            $.cookie('remember', true, { expires: 14 });                
+        }
+        else
+        {
+            // reset cookies
+            $.cookie('user', null);
+            $.cookie('pwd', null);
+            $.cookie('remember', null);
+        }
+    	return false;
+	}
+	
+	//In case customer forget password, contact with employees
+	function forgotPass(){
+	    // how to handle the forget psw part
+	    //bootbox.prompt({
+    	//	title: "Please Enter Your Email Address, We would contact with you as soon as possible to help you reset the password.",
+    	//	inputType: 'email',
+    	//	callback: function (result) {
+        //		console.log(result);
+    	//	}
+		//});
+		
+		bootbox.alert({
+    		message: "DO not support for now, Will coming soon.",
+    		callback: function () {
+        			
+   		 	}
+		});
+	}
+	
+	//Demo login, automatically login as Demo user
+	function demoLogin(){
+		document.getElementById("user").value = "Demo";
+		document.getElementById("psw").value = "Demo";
+		signin();
+	}
+</script>
+{{ define "content" }}
+<body background="http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/55.676097,12.568337/12?mapSize=1950,1500&pp=47.620495,-122.34931;21;&key=IwtMQYdndTHkOEOUVuK8~HvVz2da1-fBboISbDIDtpQ~AiF65iPwGSBmUXejSa0Za0vkXyCAYP5rULM8KW0IikKZJUWARW9OpDMxBxmA8W4f
+">
+<div class="container">
+	<div id="loginPage" class="menucontent" style="position: absolute; z-index: 1;background-color:rgba(255,255,255,0.8);margin-top: 5%;margin-left: 6%;margin-right: 6%;margin-bottom: 5%;">
+      <div class="col-xs-8 col-md-8">
+        <div class="col-xs-8 col-md-2 logo">
+          <span>
+          	<img src="{{ .Static }}images/LogoText20th1.png" alt="...">
+          </span>
+        </div>
+        <form id= "loginform" class="form-signin" action="/login" method="post">
+            <input id="user" type="text" name="username" class="form-control" placeholder="User Name" required autofocus>
+            <input id="psw" type="password" name="password" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                  Sign in</button>
+            <label class="checkbox">
+                  <input type="checkbox" value="remember-me" id="remember">
+                  Remember me
+              </label>
+            <a href="#" class="need-help" onclick="forgotPass()">I forgot my password </a><span class="clearfix"></span>
+            <a href="#" class="text-center new-account" style="margin-bottom: 15px;" onclick="demoLogin()">Demo Login</a>
+        </form>
+      </div>
+      <div class="divider"></div>
+      <div class="col-xs-4 col-md-4">
+      		<div class="col-xs-4 col-md-4" style="margin-top:60px;margin-left: 15%;margin-right: 10%;">
+               <a href="http://hermestraffic.com/">
+            	<img src="{{ .Static }}images/rsz_hots.png" alt="...">
+              </a>
+      		</div>
+      		<div class="col-xs-4 col-md-4" style="margin-bottom: 30px;margin-left: 20%;">
+          	   <label for="name" class="col-lg-4">About HOTS</label>
+      		</div>
+      		<div class="col-xs-4 col-md-4" style="margin-left: 15px;margin-right: 20%;margin-bottom: 20px;">
+          	  <a href="http://hermestraffic.com/">
+            	<img src="{{ .Static }}images/rsz_companylogo.png" alt="...">
+              </a>
+      		</div>
+      </div>
+    </div>
+</div>
+</body>
+{{end}}
+</html>

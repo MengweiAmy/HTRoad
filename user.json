@@ -1,0 +1,45 @@
+{
+  "Users": 
+  [
+    {
+       "userid":1,
+       "username": "normal",
+       "password": "10",
+       "organization":"Gladsaxe Kommune",
+       "contact": "Borge",
+       "email": "boekla@gladsaxe.dk",
+       "coverageAreas": 
+       [
+          {
+              "name": "Denmark"
+          }
+       ],
+       "rSQMaps":
+       [
+          {
+              "name": "DTU,Denmark"
+          }
+       ]
+    },
+    {  
+       "userid":2,
+       "username": "demo",
+       "password": "demo",
+       "organization":"Gladsaxe Kommune",
+       "contact": "Borge",
+       "email": "boekla@gladsaxe.dk",
+       "coverageAreas": 
+       [
+          {
+              "name": "Denmark"
+          }
+       ],
+       "rSQMaps":
+       [
+          {
+              "name": "DTU,Denmark"
+          }
+       ]
+    }
+  ]
+}

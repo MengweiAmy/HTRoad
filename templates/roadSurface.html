@@ -1,0 +1,89 @@
+{{ define "content" }}
+<body onload="init()" style="margin-left: 30px;margin-top: 37px;margin-bottom: 5px;margin-right: 40px">
+<div id="mainMenuBar" class = "menu" style="margin-left: 20px;margin-top: 37px;margin-bottom: 5px;margin-right: 40px;cursor:pointer;background-color:rgba(255,255,255);height: 60px;width: 300px;">
+   <a data-toggle="popover" title="Click" data-content="Click to show/hide whloe menu list" data-trigger="hover">
+	<span id= "menubar" data-toggle="collapse" data-target="#menupage">
+		<img class="manImg" src="{{ .Static }}images/LogoText20th1.png" style="margin-left: 2%;margin-top: 1%; margin-bottom: 17%;"></img>
+    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="margin-left: 21%;"></span>
+    </span>
+  </a>
+</div>
+<div id="menupCate" class="menu collapse in" style="position: absolute; z-index: 1;visibility: hidden;">
+    <div class="collapse in">
+      <div class="col-md-11">
+        <span style="vertical-align: middle;" id= "logo">
+            <img class="manImg" src="{{ .Static }}images/logotextsm.png" style="margin-left: 5px; margin-bottom: 4px;"></img></span>
+      </div>
+      <div  class="col-md-1"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="margin-top: 10px;" onclick="displayMenuBar()"></span></div>
+    </div>
+    <div id="menupage" class="menucontent" style="position: absolute; z-index: 1;visibility: hidden;">
+        <div class="panel panel-default" style="margin-top: 1px;">
+           <div class="panel-heading">
+             <a id="return" href="#">Menu</a>
+           </div>
+           <div class="panel-body" id="includeConfig">
+              <div class="col-md-7">
+                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;margin-bottom: 30%;">
+                  <a id="roadquality" href="#">
+                    <img src="{{ .Static }}images/rd.png" alt="...">
+                  </a>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="col-md-5">
+                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;margin-bottom: 30%;">
+                  <a id="account" href="#">
+                    <img src="{{ .Static }}images/account.png" alt="...">
+                  </a>
+                </div>
+              </div>
+           </div>
+        </div>
+    </div>
+	<div id="quality" class="menucontent collapse in" style="position: absolute; visibility: hidden;z-index: -5; ">
+    		<div class="panel panel-default" style="margin-top: 1px;">
+       		<div class="panel-heading">
+          <a id="backtoMenu" href="#">Menu
+          </a>
+          <a>
+            <span class="glyphicon glyphicon-menu-right"></span>Road Surface Quality
+          </a>
+          </div>
+          <div class="panel-body" id="includeConfig">
+				    <div class="coverage">
+  					   <label><input type="checkbox" value=""> Show coverage</label>
+                <div class="scrollDiv">
+                   <input type="checkbox" id="cb1" value="dtu" /><label for="cb1">DTU,Denmark</label><br>
+                   <input type="checkbox" id="cb1" value="dk" /><label for="cb1">Denmark</label>
+                </div>
+				    </div>
+             <div class="rsqmap">
+               <label><input type="checkbox" value=""> Show RSQ map</label>
+                <div class="scrollDiv">
+                    <input type="checkbox" id="cb1" value="dtu" checked="true" /><label for="cb1">DTU,Denmark</label><br>
+                    <input type="checkbox" id="cb1" value="dk" /><label for="cb1">Denmark</label>
+                </div>
+            </div>
+       		</div>
+		    </div>
+  </div>
+  <div id="accountDetail" class="menucontent" style="visibility:hidden;position: absolute; ">
+      <div class="panel panel-default" style="margin-top: 10px;">
+          <div class="panel-heading">
+            <a id="backtoMenu" href="#">Menu</a>
+            <a>
+              <span class="glyphicon glyphicon-menu-right"></span>Account
+            </a>
+          </div>
+          <div class="panel-body" id="accountInfo">
+             <a>This is a setting info</a>
+          </div>
+      </div>
+  </div>
+	</div>
+</div>
+<div id="map" style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; width:100%; height:100%;z-index: -2;">
+</div>
+</body>
+{{end}}
+</html>

@@ -1,0 +1,140 @@
+body {
+  font-family: "Lato",sans-serif;
+  background-color:rgba(255,255,255,0.1);
+  height: 60px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.btn-group {
+  position: relative;
+  top: -5px;
+}
+
+.zoom-extent {
+    position: absolute;
+    top: 65px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    padding: 2px;
+}
+.zoom-extent a {
+    display: block;
+    margin: 1px;
+    padding: 0;
+    color: white;
+    font-size: 18px;
+    font-family:'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    height: 22px;
+    width: 22px;
+    line-height: 19px;
+    background: rgba(0, 60, 136, 0.5);
+}
+.zoom-extent a:hover {
+    background: rgba(0, 60, 136, 0.7);
+}
+.zoom-to {
+    border-radius: 2px 2px 0 0;
+}
+.zoom-to:before {
+    content:"E";
+}
+
+.ol-touch .rotate-north {
+  top: 80px;
+}
+.ol-mycontrol {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    padding: 2px;
+    position: absolute;
+    width:300px;
+    top: 5px;
+    left:40px;
+}
+
+.menu {
+    background-color:rgba(255,255,255,0.8);
+    top: 20%; 
+    bottom: 20%; 
+    left: 20%; 
+    right: 20%; 
+}
+
+.menucontent {
+    background-color:rgba(255,255,255,0.8);
+    top: 10%; 
+    bottom: 0%; 
+    left: 0%; 
+    right: 0%; 
+}
+
+.glyphicon.glyphicon-menu-hamburger {
+    font-size: 40px;
+}
+
+.glyphicon.glyphicon-remove {
+    font-size: 30px;
+}
+
+.divider{
+    position:absolute;
+    left:60%;
+    top:12%;
+    bottom:5%;
+    border-left:3px solid black;
+}
+
+.panel-body {
+    height: 350px;
+}
+
+.scrollDiv {
+    width: 700px;
+    height:120px;
+    overflow:scroll;
+    padding:5px;
+    border:1px solid #DEBB07;
+    margin-left: 10px;
+}
+
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}

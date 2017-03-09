@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="{{ .Static }}css/loginstyle.css">
+<link rel="stylesheet" href="{{ .Static }}css/ol.css" />
+<link rel="stylesheet" href="{{ .Static }}css/bootstrap-submenu.min.css">
+<link rel="stylesheet" href="{{ .Static }}css/bootstrap-dialog.min.css">
+<link rel="stylesheet" href="{{ .Static }}bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="{{ .Static }}bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css">
+<link rel="stylesheet" href="{{ .Static }}css/awesome-bootstrap-checkbox.css">
+<link rel="stylesheet" href="{{ .Static }}css/font-awesome.css">
+<link rel="stylesheet" href="{{ .Static }}css/build.css">
+<link rel="stylesheet" href="{{ .Static }}css/style.css">
+<link rel="stylesheet" href="{{ .Static }}bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+
+
+<title>HOTS</title>
+<!-- Load Jquery before bootstrap, and load bootstrap before plugins -->
+<script type="text/javascript" src="{{ .Static }}bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/ol.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/bootstrap-submenu.min.js" defer></script>
+<script type="text/javascript" src="{{ .Static }}bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/bootstrap-dialog.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/bootbox.min.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/map.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/roadquality.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/webservice.js"></script>
+<script type="text/javascript" src="{{ .Static }}js/snap.svg-min.js"></script>
+  <body>
+      {{ template "content" . }}
+  </body>
+</html>
