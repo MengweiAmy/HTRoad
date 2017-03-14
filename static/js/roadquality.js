@@ -31,6 +31,15 @@ $(document).ready(function(){
       currentPage='menupage';
   });
 
+  //Click return button to return to services page
+  //TODO:Different id for actually same item, will Change later
+  $('#backMenu').on('click', function() {
+      console.log(currentPage);
+      document.getElementById(currentPage).style.visibility = "hidden";
+      document.getElementById('menupage').style.visibility = "visible";
+      currentPage='menupage';
+  });
+
 
    //HOTS menubar, if current page is empty, then open menuoage
    //if current page is not menupage, then close the pages
