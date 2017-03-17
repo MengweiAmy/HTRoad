@@ -7,12 +7,15 @@ import (
 	"log"
 	"time"
 	"io"
+	"github.com/gorilla/sessions"
 
 	users "./model/user"
 )
 
 const STATIC_URL string = "/static/"
 const STATIC_ROOT string="static/"
+
+var store = sessions.NewCookieStore([]byte("something-very-secret"))
 
 type Context struct {
 	Title string
@@ -41,17 +44,57 @@ func login(w http.ResponseWriter, r *http.Request) {
         // logic part of log in
         fmt.Println("username:", r.Form["username"])
         fmt.Println("password:", r.Form["password"])
-        result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
-        if result == 0 {
-        	fmt.Println("login successfully and trying to Redirect to road page")
-        	fmt.Println("httostatus",r)
-        	http.Redirect(w,r,"roadquality",http.StatusSeeOther)
-        	return
-        }else {
-        	fmt.Println("login failed")
-        	http.Redirect(w,r,"",http.StatusSeeOther)
-        }
+        userNa := r.Form["username"][0]
+        pass := r.Form["password"][0]
 
+        // //Get the user info from cookie
+        // cookie, err := r.Cookie(userNa)
+
+        // //If no cookies, then create a cookie for current user
+        // if err == http.ErrNoCookie {
+        // 	result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
+        // 	if result == 0 {
+        // 		cookie = &http.Cookie {
+        // 			Name: "demo",
+        // 			Value: "demo",
+        // 		}
+
+        // 		fmt.Println("login successfully and trying to Redirect to road page")
+        // 		fmt.Println("cookie",cookie)
+        // 		http.Redirect(w,r,"roadquality",http.StatusSeeOther)
+        // 	}else {
+        // 		fmt.Println("login failed")
+        // 		http.Redirect(w,r,"",http.StatusSeeOther)
+       	// 	 }
+        // }else {
+
+        // 	http.Redirect(w,r,"roadquality",http.StatusSeeOther)
+        // }
+        // http.SetCookie(w,cookie)
+
+        result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
+        	if result == 0 {
+        		// cookie = &http.Cookie {
+        		// 	Name: "demo",
+        		// 	Value: "demo",
+        		// }
+
+        		fmt.Println("login successfully and trying to Redirect to road page")
+        		//fmt.Println("cookie",cookie)
+        		http.Redirect(w,r,"roadquality",http.StatusSeeOther)
+        	}else {
+        		fmt.Println("login failed")
+        		http.Redirect(w,r,"",http.StatusSeeOther)
+       		 }
+
+        session, err := store.Get(r, "logged-in")
+    	if err != nil {
+        	http.Error(w, err.Error(), http.StatusInternalServerError)
+        	return
+    	}
+    	session.Values["logged-in"] = userNa;
+    	session.Save(r,w); 
+    	fmt.Println("session",session);
     }
 }
 
