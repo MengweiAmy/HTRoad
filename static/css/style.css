@@ -130,11 +130,20 @@ body {
     height:120px;
     overflow:scroll;
     padding:5px;
-    border:1px solid #DEBB07;
+    border:1px solid;
+    margin-left: 10px;
+}
+
+.scrollAccDiv {
+    width: 700px;
+    height:310px;
+    overflow:scroll;
+    padding:5px;
     margin-left: 10px;
 }
 
 fieldset.scheduler-border {
+    display: table;
     border: 1px groove #ddd !important;
     padding: 0 1.4em 1.4em 1.4em !important;
     margin: 0 0 1.5em 0 !important;
@@ -167,6 +176,19 @@ ul.checkbox li {
   display:inline-block;
   width:12em;
 } 
+
+div.accountCls {
+  display: table;
+}
+
+label.acclabel {
+  display: table-cell;
+  text-align:right;
+  font-size: 8px;
+}
+text.acctext {
+  display: table-cell;
+}
 
 @media screen and (max-height: 450px) {
 .sidenav {padding-top: 15px;}

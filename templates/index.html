@@ -16,18 +16,7 @@
 	function signin() {
   		var name = document.getElementById("user").value;
     	var psw = document.getElementById("psw").value;
-
-    	hots.login(name, psw, function(response, status){
-      		if (status!=200 && response!=true) {
-        		// Handle login/connection error
-	        		return;
-	      	}
-
-      		//var path = window.location.origin + window.location.pathname + "pages/roadQuality.jsp";
-      		window.location.href = "pages/roadQuality.jsp";
-    	});
-    	window.location.href = "pages/roadQuality.jsp";
-    	
+      
     	//Save cookies if checked remember me
     	if ($('#remember').is(':checked')) {
             var username = $('#user').val();
