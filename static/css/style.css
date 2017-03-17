@@ -92,15 +92,15 @@ body {
 .menu {
     background-color:rgba(255,255,255,0.8);
     top: 20%; 
-    bottom: 20%; 
+    bottom: 18%; 
     left: 20%; 
-    right: 20%; 
+    right: 20%;
 }
 
 .menucontent {
     background-color:rgba(255,255,255,0.8);
     top: 10%; 
-    bottom: 0%; 
+    bottom: 10%; 
     left: 0%; 
     right: 0%; 
 }
@@ -121,8 +121,12 @@ body {
     border-left:3px solid black;
 }
 
+/*
+Adjust the height of the panel
+will effect the version div position
+*/
 .panel-body {
-    height: 350px;
+    height: 330px;
 }
 
 .scrollDiv {
@@ -135,11 +139,15 @@ body {
 }
 
 .scrollAccDiv {
-    width: 700px;
-    height:310px;
+    width: 730px;
+    height:330px;
     overflow:scroll;
     padding:5px;
     margin-left: 10px;
+}
+.versionDiv {
+    margin-top: 370px;
+    height: 18px;
 }
 
 fieldset.scheduler-border {
@@ -151,14 +159,14 @@ fieldset.scheduler-border {
             box-shadow:  0px 0px 0px 0px #000;
 }
 
-    legend.scheduler-border {
-        font-size: 1.2em !important;
-        font-weight: bold !important;
-        text-align: left !important;
-        width:auto;
-        padding:0 10px;
-        border-bottom:none;
-    }
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
 
 ul.checkbox  { 
   margin: 0; 
