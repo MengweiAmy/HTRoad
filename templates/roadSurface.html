@@ -14,10 +14,13 @@
         <span style="vertical-align: middle;" id= "logo">
             <img class="manImg" src="{{ .Static }}images/logotextsm.png" style="margin-left: 5px; margin-bottom: 4px;"></img></span>
       </div>
-      <div  class="col-md-1"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="margin-top: 10px;" onclick="displayMenuBar()"></span></div>
+      <div class="col-md-1"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="margin-top: 10px;" onclick="displayMenuBar()"></span>
+      </div>
+      <div class="versionDiv col-md-2"><span><label>Version 1.0</label></span>
+      </div>
     </div>
     <div id="menupage" class="menucontent" style="position: absolute; z-index: 1;visibility: hidden;">
-        <div class="panel panel-default" style="margin-top: 1px;">
+        <div class="panel panel-default" style="margin-top: 1px;margin-bottom: 20px;">
            <div class="panel-heading">
              <a id="return" href="#">Menu</a>
            </div>
@@ -31,7 +34,7 @@
               </div>
               <div class="divider"></div>
               <div class="col-md-5">
-                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;margin-bottom: 30%;">
+                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;">
                   <a id="account" href="#">
                     <img src="{{ .Static }}images/account.png" alt="...">
                   </a>
