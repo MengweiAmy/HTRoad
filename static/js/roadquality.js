@@ -75,14 +75,18 @@ $(document).ready(function(){
           document.getElementById("email").value = data.Email;
 
           var areas = data.CoverageAreas;
+          var arealist=" ";
           for (var i in areas) {
-              document.getElementById("covera").value = areas[i].Name;
+              arealist = arealist.concat(areas[i].Name,";")
           }
-            //document.getElementById("covera").value = areas[i].Name;
+          document.getElementById("covera").value = arealist
           
-         // document.getElementById("covera").value = areas[0].Name;
-          console.log("area data",areas[0].Name);
-          document.getElementById("rsq").value = data.Organization;
+          var rsq = data.RSQMaps;
+          var rsqlist=" ";
+          for (var i in rsq) {
+              rsqlist = rsqlist.concat(rsq[i].Name,";")
+          }
+          document.getElementById("rsq").value = rsqlist;
 
       });
    });
