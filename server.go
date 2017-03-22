@@ -7,9 +7,11 @@ import (
 	"log"
 	"time"
 	"io"
-	"github.com/gorilla/sessions"
+    "github.com/gorilla/sessions"
+    "encoding/json"
 
 	users "./model/user"
+    // sessions "./model/session"
 )
 
 const STATIC_URL string = "/static/"
@@ -45,33 +47,10 @@ func login(w http.ResponseWriter, r *http.Request) {
         fmt.Println("username:", r.Form["username"])
         fmt.Println("password:", r.Form["password"])
         userNa := r.Form["username"][0]
-        pass := r.Form["password"][0]
+        //pass := r.Form["password"][0]
+        fmt.Println("userNa:", userNa)
 
-        // //Get the user info from cookie
-        // cookie, err := r.Cookie(userNa)
-
-        // //If no cookies, then create a cookie for current user
-        // if err == http.ErrNoCookie {
-        // 	result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
-        // 	if result == 0 {
-        // 		cookie = &http.Cookie {
-        // 			Name: "demo",
-        // 			Value: "demo",
-        // 		}
-
-        // 		fmt.Println("login successfully and trying to Redirect to road page")
-        // 		fmt.Println("cookie",cookie)
-        // 		http.Redirect(w,r,"roadquality",http.StatusSeeOther)
-        // 	}else {
-        // 		fmt.Println("login failed")
-        // 		http.Redirect(w,r,"",http.StatusSeeOther)
-       	// 	 }
-        // }else {
-
-        // 	http.Redirect(w,r,"roadquality",http.StatusSeeOther)
-        // }
-        // http.SetCookie(w,cookie)
-
+        //sess := sessions.SessionStart(w,r)
         result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
         	if result == 0 {
         		// cookie = &http.Cookie {
@@ -81,20 +60,28 @@ func login(w http.ResponseWriter, r *http.Request) {
 
         		fmt.Println("login successfully and trying to Redirect to road page")
         		//fmt.Println("cookie",cookie)
+                // Get a session. We're ignoring the error resulted from decoding an
+                // existing session: Get() always returns a session, even if empty.
+                session, _ := store.Get(r, "get_name_session")
+                // Set some session values.
+                session.Values["name"] = userNa
+                session.Values[42] = 43
+                session.Options = &sessions.Options{
+                    MaxAge:   60*5,//set max age 5mins
+                    HttpOnly: true,
+                }
+                // Save it before we write to the response/return from the handler.
+                session.Save(r, w)
+                name,ok := session.Values["name"].(string)
+                if ok {
+                    fmt.Println("session",name);
+                }
+                //sess.Set("username", r.Form["username"])
         		http.Redirect(w,r,"roadquality",http.StatusSeeOther)
         	}else {
         		fmt.Println("login failed")
         		http.Redirect(w,r,"",http.StatusSeeOther)
        		 }
-
-        session, err := store.Get(r, "logged-in")
-    	if err != nil {
-        	http.Error(w, err.Error(), http.StatusInternalServerError)
-        	return
-    	}
-    	session.Values["logged-in"] = userNa;
-    	session.Save(r,w); 
-    	fmt.Println("session",session);
     }
 }
 
@@ -109,6 +96,24 @@ func render(w http.ResponseWriter,tmpl string, context Context) {
 	if err != nil {
 		log.Print("template executing error:",err)
 	}
+}
+
+func accountInfo(w http.ResponseWriter, r *http.Request) {
+    session, _ := store.Get(r, "get_name_session")
+    name,ok := session.Values["name"].(string)
+    if ok {
+        fmt.Println("get current user",name);
+    }
+    
+    person := users.GetUserAccountInfoByName(name)
+    //if person, ok := val.(*users.UserInfo); !ok {
+        // Handle the case that it's not an expected type
+    //}
+    s,_ := json.Marshal(person)
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(person)
+   // w.Write(s)
+    fmt.Printf("get current user", s);
 }
 
 func StaticHandler(w http.ResponseWriter, req *http.Request) {
@@ -130,6 +135,7 @@ func main() {
 	http.HandleFunc("/",HomePage)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/roadquality/", RoadSurface)
+    http.HandleFunc("/account/", accountInfo)
 	http.HandleFunc(STATIC_URL,StaticHandler)
 	err := http.ListenAndServe(":9090",nil)
 	if err != nil {

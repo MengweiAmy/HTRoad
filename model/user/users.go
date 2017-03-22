@@ -5,6 +5,7 @@ import (
     "os"
     "encoding/json"
     "io/ioutil"
+    "encoding/gob"
 )
 type UserInfo struct {
     Users []User
@@ -43,6 +44,7 @@ func GetUsers() UserInfo {
 }
 
 func VerifyUser(username string, password string) (int) {
+    gob.Register(&User{})
     userlist := GetUsers().Users;
     for i := range userlist {
         user := userlist[i]
@@ -51,4 +53,18 @@ func VerifyUser(username string, password string) (int) {
         }
     } 
     return 1;
+}
+
+/*
+Request current user account information by username
+*/
+func GetUserAccountInfoByName(username string) (User) {
+    userlist := GetUsers().Users;
+    for i := range userlist {
+        user := userlist[i]
+        if username == user.Username {
+            return user;
+        }
+    }
+    return User{Username: ""}
 }

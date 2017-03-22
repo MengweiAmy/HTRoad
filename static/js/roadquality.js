@@ -62,6 +62,29 @@ $(document).ready(function(){
       document.getElementById('menupage').style.visibility = "hidden";
       document.getElementById('accountDetail').style.visibility = "visible";
       console.log(currentPage);
+      $.ajax({
+        type: 'POST',
+        url: "/account/",
+        dataType: "json"
+      }).done(function (data) {
+        // Do whatever with returned data
+          //console.log("get user info",data)
+          console.log("first data",data);
+          document.getElementById("organ").value = data.Organization;
+          document.getElementById("contact").value = data.Contact;
+          document.getElementById("email").value = data.Email;
+
+          var areas = data.CoverageAreas;
+          for (var i in areas) {
+              document.getElementById("covera").value = areas[i].Name;
+          }
+            //document.getElementById("covera").value = areas[i].Name;
+          
+         // document.getElementById("covera").value = areas[0].Name;
+          console.log("area data",areas[0].Name);
+          document.getElementById("rsq").value = data.Organization;
+
+      });
    });
 
   function visibleConfig()
