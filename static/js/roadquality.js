@@ -222,8 +222,9 @@ $(document).ready(function(){
   	 	 document.getElementById('configmap').style.visibility = "hidden";
   	 }else{
   	 	 document.getElementById(currentPage).style.visibility = "hidden";
+       document.getElementById('menupCate').style.visibility = "hidden";
   	 }
-  	 document.getElementById('menupCate').style.visibility = "hidden";
+  	 
   }
   
     $(document).ready( function() {
