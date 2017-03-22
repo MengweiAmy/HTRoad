@@ -26,8 +26,8 @@
     },
     {  
        "userid":2,
-       "username": "demo",
-       "password": "demo",
+       "username": "Demo",
+       "password": "Demo",
        "organization":"Gladsaxe Kommune",
        "contact": "Borge",
        "email": "boekla@gladsaxe.dk",
