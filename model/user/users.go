@@ -6,6 +6,7 @@ import (
     "encoding/json"
     "io/ioutil"
     "encoding/gob"
+    "errors"
 )
 type UserInfo struct {
     Users []User
@@ -43,16 +44,17 @@ func GetUsers() UserInfo {
     return userlist;
 }
 
-func VerifyUser(username string, password string) (int) {
+func VerifyUser(username string, password string) (int,error) {
     gob.Register(&User{})
     userlist := GetUsers().Users;
     for i := range userlist {
         user := userlist[i]
         if username == user.Username && password == user.Password {
-            return 0;
+            return 0,nil;
         }
     } 
-    return 1;
+    err := errors.New("Wrong username or Password")
+    return 1,err;
 }
 
 /*

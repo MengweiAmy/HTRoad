@@ -51,7 +51,8 @@ func login(w http.ResponseWriter, r *http.Request) {
         fmt.Println("userNa:", userNa)
 
         //sess := sessions.SessionStart(w,r)
-        result := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
+        result,err := users.VerifyUser(r.Form["username"][0],r.Form["password"][0])
+        fmt.Println("err mes:",err)
         	if result == 0 {
         		// cookie = &http.Cookie {
         		// 	Name: "demo",
@@ -80,8 +81,8 @@ func login(w http.ResponseWriter, r *http.Request) {
         		http.Redirect(w,r,"roadquality",http.StatusSeeOther)
         	}else {
         		fmt.Println("login failed")
-        		http.Redirect(w,r,"",http.StatusSeeOther)
-       		 }
+        		http.Error(w, "authorization failed, Wrong UserName or Password", http.StatusUnauthorized)
+       		}
     }
 }
 
