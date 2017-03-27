@@ -31,10 +31,9 @@ type RsqmapsType struct {
     Name     string
 }
 
-// Main function
-// I realize this function is much too simple I am simply at a loss to
+//Load the user information json file
 func GetUsers() UserInfo {
-    file, e := ioutil.ReadFile("./user.json")
+    file, e := ioutil.ReadFile("/Users/sunmengwei/Documents/go/src/HTRoad/user.json")
     if e != nil {
         fmt.Printf("File error: %v\n", e)
         os.Exit(1)
@@ -52,7 +51,7 @@ func VerifyUser(username string, password string) (int,error) {
         if username == user.Username && password == user.Password {
             return 0,nil;
         }
-    } 
+    }
     err := errors.New("Wrong username or Password")
     return 1,err;
 }

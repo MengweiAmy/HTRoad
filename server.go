@@ -10,12 +10,12 @@ import (
     "github.com/gorilla/sessions"
     "encoding/json"
 
-	users "./model/user"
+	users "HTRoad/model/user"
     // sessions "./model/session"
 )
 
-const STATIC_URL string = "/static/"
-const STATIC_ROOT string="static/"
+const STATIC_URL string = "/Users/sunmengwei/Documents/go/src/HTRoad/static/"
+const STATIC_ROOT string="/Users/sunmengwei/Documents/go/src/HTRoad/static/"
 
 var store = sessions.NewCookieStore([]byte("something-very-secret"))
 
@@ -26,12 +26,12 @@ type Context struct {
 
 func HomePage(w http.ResponseWriter, req *http.Request) {
 	context := Context{Title: "HOTS"}
-	render(w,"index.html",context)
+	render(w,"/Users/sunmengwei/Documents/go/src/HTRoad/templates/index.html",context)
 }
 
 func RoadSurface(w http.ResponseWriter, req *http.Request) {
 	context := Context{Title: "RoadQuality"}
-	render(w,"roadSurface.html", context)
+	render(w,"/Users/sunmengwei/Documents/go/src/HTRoad/templates/roadSurface.html", context)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +39,7 @@ func login(w http.ResponseWriter, r *http.Request) {
     fmt.Println("path", r.URL.Path)
     fmt.Println("url", r.URL)
     if r.Method == "GET" {
-        t, _ := template.ParseFiles("index.html")
+        t, _ := template.ParseFiles("/Users/sunmengwei/Documents/go/src/HTRoad/templates/index.html")
         t.Execute(w, nil)
     } else {
         r.ParseForm()
@@ -88,7 +88,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 func render(w http.ResponseWriter,tmpl string, context Context) {
 	context.Static = STATIC_URL
-	tmpl_list := []string{"templates/base.html", fmt.Sprintf("templates/%s",tmpl)}
+	tmpl_list := []string{"/Users/sunmengwei/Documents/go/src/HTRoad/templates/base.html", fmt.Sprintf("%s",tmpl)}
 	t,err := template.ParseFiles(tmpl_list...)
 	if err != nil {
 		log.Print("template parsing error:",err)
@@ -105,7 +105,7 @@ func accountInfo(w http.ResponseWriter, r *http.Request) {
     if ok {
         fmt.Println("get current user",name);
     }
-    
+
     person := users.GetUserAccountInfoByName(name)
     //if person, ok := val.(*users.UserInfo); !ok {
         // Handle the case that it's not an expected type
@@ -119,6 +119,7 @@ func accountInfo(w http.ResponseWriter, r *http.Request) {
 
 func StaticHandler(w http.ResponseWriter, req *http.Request) {
 	static_file := req.URL.Path[len(STATIC_URL):]
+   // fmt.Printf("static_file", static_file)
 	if len(static_file) != 0 {
 		f, err := http.Dir(STATIC_ROOT).Open(static_file)
 		if err == nil {
