@@ -22,7 +22,7 @@ const STATIC_URL string = "/static/"
 const STATIC_ROOT string="static/"
 
 var globalConfig = config.LoadConfg()
-var slash string
+var slash = "/"
 
 var store = sessions.NewCookieStore([]byte("something-very-secret"))
 
