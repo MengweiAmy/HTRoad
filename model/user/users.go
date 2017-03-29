@@ -7,7 +7,13 @@ import (
     "io/ioutil"
     "encoding/gob"
     "errors"
+    "runtime"
+    "log"
+    "path/filepath"
 )
+
+var slash = "/"
+
 type UserInfo struct {
     Users []User
 }
@@ -33,7 +39,15 @@ type RsqmapsType struct {
 
 //Load the user information json file
 func GetUsers() UserInfo {
-    file, e := ioutil.ReadFile("C:\\Users\\mws\\workspace\\HOTS\\src\\HTRoad\\user.json")
+    dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println("current dir without configfile:",dir)
+    if runtime.GOOS == "windows" {
+        slash = "\\";
+    }
+    file, e := ioutil.ReadFile(dir+slash+"user.json")
     if e != nil {
         fmt.Printf("File error: %v\n", e)
         os.Exit(1)

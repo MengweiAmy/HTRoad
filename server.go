@@ -42,9 +42,6 @@ func RoadSurface(w http.ResponseWriter, req *http.Request) {
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
-    fmt.Println("method:", r.Method) //get request method
-    fmt.Println("path", r.URL.Path)
-    fmt.Println("url", r.URL)
     if r.Method == "GET" {
         t, _ := template.ParseFiles(globalConfig.Dir+slash+"index.html")
         t.Execute(w, nil)
@@ -94,9 +91,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func render(w http.ResponseWriter,tmpl string, context Context) {
-    fmt.Println("Hello from render")
 	context.Static = STATIC_URL
-    fmt.Println("print from render",globalConfig.Dir+slash+"base.html");
 	tmpl_list := []string{globalConfig.Dir+slash+"templates"+slash+"base.html", fmt.Sprintf("%s",tmpl)}
 	t,err := template.ParseFiles(tmpl_list...)
 	if err != nil {
