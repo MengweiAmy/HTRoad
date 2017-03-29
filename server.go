@@ -142,6 +142,8 @@ func main() {
         slash = "\\";
     }
     fmt.Println("Hello from Main")
+    fmt.Println("global config dir", globalConfig.Dir)
+
 
 	fmt.Printf("Results: %v\n", users.GetUsers())
 	http.HandleFunc("/",HomePage)

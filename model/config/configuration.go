@@ -25,7 +25,7 @@ func LoadConfg() Config {
     fmt.Println("current dir without configfile:",dir)
 
     // Read/parse any flags/options given.
-    flag.StringVar(&configFile, "config", "./starter.json", "Setup executables to start")
+    flag.StringVar(&configFile, "config", dir+"/starter.json", "Setup executables to start")
     flag.Parse()
     fmt.Println("configFile",configFile)
 
@@ -35,6 +35,5 @@ func LoadConfg() Config {
     }
     var configDetail Config
     json.Unmarshal(data,&configDetail);
-    configDetail.Dir = dir
     return configDetail
 }
