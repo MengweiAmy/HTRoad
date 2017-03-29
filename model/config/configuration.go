@@ -12,7 +12,7 @@ import (
 
 type Config struct {
     Dir string
-    Port int
+    Port string
 }
 
 func LoadConfg() Config {

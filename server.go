@@ -154,7 +154,7 @@ func main() {
 	http.HandleFunc("/roadquality/", RoadSurface)
     http.HandleFunc("/account/", AccountInfo)
 	http.HandleFunc(STATIC_URL,StaticHandler)
-	err := http.ListenAndServe(":9090",nil)
+	err := http.ListenAndServe(":"+globalConfig.Port,nil)
 	if err != nil {
 		log.Fatal("ListenAndServe:",err)
 	}
