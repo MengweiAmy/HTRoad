@@ -100,7 +100,7 @@ body {
 .menucontent {
     background-color:rgba(255,255,255,0.8);
     top: 10%; 
-    bottom: 10%; 
+    bottom: 5%; 
     left: 0%; 
     right: 0%; 
 }
@@ -125,29 +125,41 @@ body {
 Adjust the height of the panel
 will effect the version div position
 */
+/*
+330
+*/
+.panel-default {
+  height: 100%;
+  width: 100%;
+}
 .panel-body {
-    height: 330px;
+    height: 90%;
 }
 
+/*height: 120px;
+ width: 700px;*/
 .scrollDiv {
-    width: 700px;
-    height:120px;
+    width: 90%;
+    height: 70%;
     overflow:scroll;
     padding:5px;
     border:1px solid;
     margin-left: 10px;
 }
 
+/*height: 330px;
+width: 730px*/
 .scrollAccDiv {
-    width: 730px;
-    height:330px;
+    width: 90%;
+    height:85%;
     overflow:scroll;
     padding:5px;
     margin-left: 10px;
 }
 .versionDiv {
-    margin-top: 370px;
+    margin-top: 46.5%;
     height: 18px;
+    width: 100px;
 }
 
 fieldset.scheduler-border {
@@ -187,6 +199,14 @@ ul.checkbox li {
 
 div.accountCls {
   display: table;
+}
+
+div.coverage {
+  height: 55%;
+}
+
+div.rsqmap {
+  height: 55%;
 }
 
 label.acclabel {

@@ -8,7 +8,7 @@
     </span>
   </a>
 </div>
-<div id="menupCate" class="menu collapse in" style="position: absolute; z-index: 1;visibility: hidden;">
+<div id="menupContainer" class="menu collapse in" style="position: absolute; z-index: 1;visibility: hidden;">
     <div class="collapse in">
       <div class="col-md-11">
         <span style="vertical-align: middle;" id= "logo">
@@ -16,17 +16,17 @@
       </div>
       <div class="col-md-1"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true" style="margin-top: 10px;" onclick="displayMenuBar()"></span>
       </div>
-      <div class="versionDiv col-md-2"><span><label>Version 1.0</label></span>
+      <div class="versionDiv col-md-2"><span style="width: 80px;"><label style="width: 100px;">Version 1.0</label></span>
       </div>
     </div>
     <div id="menupage" class="menucontent" style="position: absolute; z-index: 1;visibility: hidden;">
-        <div class="panel panel-default" style="margin-top: 1px;margin-bottom: 20px;">
+        <div class="panel panel-default" style="margin-top: 1px;margin-bottom: 20px;height: 100%;">
            <div class="panel-heading">
              <a id="return" href="#">Menu</a>
            </div>
            <div class="panel-body" id="includeConfig">
               <div class="col-md-7">
-                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;margin-bottom: 30%;">
+                <div class="col-sm-2 col-md-2">
                   <a id="roadquality" href="#">
                     <img src="{{ .Static }}images/rd.png" alt="...">
                   </a>
@@ -34,7 +34,7 @@
               </div>
               <div class="divider"></div>
               <div class="col-md-5">
-                <div class="col-sm-2 col-md-2" style="margin-left: 5%;margin-top:5%;">
+                <div class="col-sm-2 col-md-2" style="margin-left: 5%;">
                   <a id="account" href="#">
                     <img src="{{ .Static }}images/account.png" alt="...">
                   </a>

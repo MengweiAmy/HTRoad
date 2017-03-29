@@ -1,4 +1,6 @@
 	$(document).ready(function() {
+        var windowsize = $(window).width();
+        console.log(windowsize);
         var remember = $.cookie('remember');
         if (remember == 'true') 
         {
@@ -45,7 +47,7 @@
 	
 	//Demo login, automatically login as Demo user
 	function demoLogin(){
-		document.getElementById("user").value = "Demo";
-		document.getElementById("psw").value = "Demo";
+		document.getElementById("user").value = "demo";
+		document.getElementById("psw").value = "demo";
 		storeCookies();
 	}

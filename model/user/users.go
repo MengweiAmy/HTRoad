@@ -33,7 +33,7 @@ type RsqmapsType struct {
 
 //Load the user information json file
 func GetUsers() UserInfo {
-    file, e := ioutil.ReadFile("/Users/sunmengwei/Documents/go/src/HTRoad/user.json")
+    file, e := ioutil.ReadFile("C:\\Users\\mws\\workspace\\HOTS\\src\\HTRoad\\user.json")
     if e != nil {
         fmt.Printf("File error: %v\n", e)
         os.Exit(1)

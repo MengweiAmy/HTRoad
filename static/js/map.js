@@ -80,15 +80,25 @@
         strategy: ol.loadingstrategy.bbox
   	});
 
-      var vector = new ol.layer.Vector({
+    var vector = new ol.layer.Vector({
         source: vectorSource,
         style: new ol.style.Style({
           stroke: new ol.style.Stroke({
-            color: 'rgba(0, 0, 255, 1.0)',
-            width: 2
+            color: 'rgba(0, 0, 255, 0.3)',
+            width: 1
           }),
         })
       });
+
+    var featureLayer = new ol.layer.Tile({
+            title: 'Global Imagery',
+            source: new ol.source.TileWMS({
+              url: 'https://ahocevar.com/geoserver/wms',
+              params: {LAYERS: 'nasa:bluemarble', TILED: true}
+            })
+    })
+
+
 
       layers.push(new ol.layer.Tile({
           visible: false,
@@ -107,6 +117,18 @@
           preload: Infinity,
           source: new ol.source.OSM()
       }),vector);
+
+      var wms_source = new ol.source.TileWMS({
+          url: 'http://192.168.2.2:8080/geoserver/hots/wms',
+          params: {
+              'LAYERS': 'hots:lyngby2_badness_raster'
+          }
+      });
+      var wms_layer = new ol.layer.Tile({
+          source:  wms_source
+      });
+      
+      layers.push(wms_layer);   
 
     var map = new ol.Map({
   	   controls: ol.control.defaults({}, []),

@@ -52,7 +52,7 @@ $(document).ready(function(){
    			document.getElementById(currentPage).style.visibility = "hidden";
    	   	currentPage='';
    		}
-   		document.getElementById('menupCate').style.visibility = "visible";
+   		document.getElementById('menupContainer').style.visibility = "visible";
    		document.getElementById('menupage').style.visibility = "visible";
    		document.getElementById('mainMenuBar').style.visibility = "hidden";
    });
@@ -217,14 +217,8 @@ $(document).ready(function(){
   {
      console.log(currentPage);
   	 document.getElementById('mainMenuBar').style.visibility = "visible";
-  	 if(currentPage == 'filterConfig' || currentPage=='includeConfig') {
-  	 	 document.getElementById(currentPage).style.display = "none";
-  	 	 document.getElementById('configmap').style.visibility = "hidden";
-  	 }else{
-  	 	 document.getElementById(currentPage).style.visibility = "hidden";
-       document.getElementById('menupCate').style.visibility = "hidden";
-  	 }
-  	 
+  	 document.getElementById(currentPage).style.visibility = "hidden";
+     document.getElementById('menupContainer').style.visibility = "hidden";
   }
   
     $(document).ready( function() {

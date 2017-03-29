@@ -9,13 +9,20 @@ import (
 	"io"
     "github.com/gorilla/sessions"
     "encoding/json"
+    "runtime"
 
 	users "HTRoad/model/user"
+    config "HTRoad/model/config"
     // sessions "./model/session"
 )
 
-const STATIC_URL string = "/Users/sunmengwei/Documents/go/src/HTRoad/static/"
-const STATIC_ROOT string="/Users/sunmengwei/Documents/go/src/HTRoad/static/"
+///Users/sunmengwei/Documents/go/src
+
+const STATIC_URL string = "/static/"
+const STATIC_ROOT string="static/"
+
+var globalConfig = config.LoadConfg()
+var slash string
 
 var store = sessions.NewCookieStore([]byte("something-very-secret"))
 
@@ -26,20 +33,20 @@ type Context struct {
 
 func HomePage(w http.ResponseWriter, req *http.Request) {
 	context := Context{Title: "HOTS"}
-	render(w,"/Users/sunmengwei/Documents/go/src/HTRoad/templates/index.html",context)
+	render(w,globalConfig.Dir+slash+"templates"+slash+"index.html",context)
 }
 
 func RoadSurface(w http.ResponseWriter, req *http.Request) {
 	context := Context{Title: "RoadQuality"}
-	render(w,"/Users/sunmengwei/Documents/go/src/HTRoad/templates/roadSurface.html", context)
+	render(w,globalConfig.Dir+slash+"templates"+slash+"roadSurface.html", context)
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
     fmt.Println("method:", r.Method) //get request method
     fmt.Println("path", r.URL.Path)
     fmt.Println("url", r.URL)
     if r.Method == "GET" {
-        t, _ := template.ParseFiles("/Users/sunmengwei/Documents/go/src/HTRoad/templates/index.html")
+        t, _ := template.ParseFiles(globalConfig.Dir+slash+"index.html")
         t.Execute(w, nil)
     } else {
         r.ParseForm()
@@ -87,8 +94,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func render(w http.ResponseWriter,tmpl string, context Context) {
+    fmt.Println("Hello from render")
 	context.Static = STATIC_URL
-	tmpl_list := []string{"/Users/sunmengwei/Documents/go/src/HTRoad/templates/base.html", fmt.Sprintf("%s",tmpl)}
+    fmt.Println("print from render",globalConfig.Dir+slash+"base.html");
+	tmpl_list := []string{globalConfig.Dir+slash+"templates"+slash+"base.html", fmt.Sprintf("%s",tmpl)}
 	t,err := template.ParseFiles(tmpl_list...)
 	if err != nil {
 		log.Print("template parsing error:",err)
@@ -99,7 +108,7 @@ func render(w http.ResponseWriter,tmpl string, context Context) {
 	}
 }
 
-func accountInfo(w http.ResponseWriter, r *http.Request) {
+func AccountInfo(w http.ResponseWriter, r *http.Request) {
     session, _ := store.Get(r, "get_name_session")
     name,ok := session.Values["name"].(string)
     if ok {
@@ -133,11 +142,17 @@ func StaticHandler(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	//fs := justFilesFilesystem{http.Dir("http/resources/")}
+    //globalConfig:=LoadConfg();
+    if runtime.GOOS == "windows" {
+        slash = "\\";
+    }
+    fmt.Println("Hello from Main")
+
 	fmt.Printf("Results: %v\n", users.GetUsers())
 	http.HandleFunc("/",HomePage)
-	http.HandleFunc("/login", login)
+	http.HandleFunc("/login", Login)
 	http.HandleFunc("/roadquality/", RoadSurface)
-    http.HandleFunc("/account/", accountInfo)
+    http.HandleFunc("/account/", AccountInfo)
 	http.HandleFunc(STATIC_URL,StaticHandler)
 	err := http.ListenAndServe(":9090",nil)
 	if err != nil {
