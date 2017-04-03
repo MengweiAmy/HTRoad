@@ -1,7 +1,7 @@
 var isMenuDis = true;
 var layers = [];
 var currentVisiblePage = '';
-var currentPage = 'menupage';
+var currentPage = 'menuIcon';
 var currentUser='';
 
 init();
@@ -17,7 +17,7 @@ $(document).ready(function(){
   //Click Road quality to config map settings //OSM
   $('#roadquality').on('click',function() {
       currentPage = 'quality';
-      document.getElementById('menupage').style.visibility = "hidden";
+      document.getElementById('menuIcon').style.visibility = "hidden";
       document.getElementById('quality').style.visibility = "visible";
       //document.getElementById(currentPage).style.display = "block";
       //createAreaList();
@@ -27,8 +27,8 @@ $(document).ready(function(){
   $('#backtoMenu').on('click', function() {
       console.log(currentPage);
       document.getElementById(currentPage).style.visibility = "hidden";
-      document.getElementById('menupage').style.visibility = "visible";
-      currentPage='menupage';
+      document.getElementById('menuIcon').style.visibility = "visible";
+      currentPage='menuIcon';
   });
 
   //Click return button to return to services page
@@ -36,8 +36,8 @@ $(document).ready(function(){
   $('#backMenu').on('click', function() {
       console.log(currentPage);
       document.getElementById(currentPage).style.visibility = "hidden";
-      document.getElementById('menupage').style.visibility = "visible";
-      currentPage='menupage';
+      document.getElementById('menuIcon').style.visibility = "visible";
+      currentPage='menuIcon';
   });
 
 
@@ -45,21 +45,14 @@ $(document).ready(function(){
    //if current page is not menupage, then close the pages
    //if current page is menupage, then the collapse in/out would work
    $('#mainMenuBar').on('click', function() {
-      console.log(currentPage);
-   		if(currentPage == ''){
-   			currentPage='menupage';
-   		}else if(currentPage != 'menupage'){
-   			document.getElementById(currentPage).style.visibility = "hidden";
-   	   	currentPage='';
-   		}
    		document.getElementById('menupContainer').style.visibility = "visible";
-   		document.getElementById('menupage').style.visibility = "visible";
+   		document.getElementById('menuIcon').style.visibility = "visible";
    		document.getElementById('mainMenuBar').style.visibility = "hidden";
    });
 
    $('#account').on('click', function() {
       currentPage = 'accountDetail';
-      document.getElementById('menupage').style.visibility = "hidden";
+      document.getElementById('menuIcon').style.visibility = "hidden";
       document.getElementById('accountDetail').style.visibility = "visible";
       console.log(currentPage);
       $.ajax({
